@@ -9,8 +9,6 @@ UŽDUOTYS
 
 Galima rinktis ir vieną ar kelias iš kitų užduočiu:
 
-1. * Surasti prekes kurios turi kelis (daugiau negu vieną) barkodus ir surašyti tuos barkodus ir laikus nuo kada jie galiojo
-
 2. Sudaryti prekių balansą (barkodai ir tiekejai nesvarbu). 
 
     a) ** balanso lentelę pasirinktam mėnesiui, kuri atrodytu taip : 
