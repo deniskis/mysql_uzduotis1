@@ -103,10 +103,10 @@ e.printStackTrace();
 		String rez_vvoda = request.getParameter("search");
 		if ( rez_vvoda != null) {
 		
-			String	mesiac = 	request.getParameter("mesiac");
+			String	mesiac = request.getParameter("mesiac");
 		
 		statement=connection.createStatement();		
-		String sql = " SELECT `preke`, `reiksme`, SUM( DISTINCT `prekes_gavimai`.`kiekis`), SUM( DISTINCT `prekes_gavimai`.`kiekis` * `prekes_gavimai`.`vnt_kaina`), SUM(`prekes_pardavimai`.`kiekis`), SUM(`prekes_pardavimai`.`kiekis` * `prekes_pardavimai`.`vnt_kaina`)" 
+		String sql = " SELECT `preke`, `reiksme`, SUM( DISTINCT `prekes_gavimai`.`kiekis`) AS `kiekis_gauta`, SUM( DISTINCT `prekes_gavimai`.`kiekis` * `prekes_gavimai`.`vnt_kaina`) AS `suma_gauta`, SUM(IFNULL(`prekes_pardavimai`.`kiekis`, 0)) AS `kiekis_parduota`, SUM(IFNULL(`prekes_pardavimai`.`kiekis` * `prekes_pardavimai`.`vnt_kaina`, 0)) AS `suma_parduota`" 
 		+ " FROM `prekes_tiekejai`" 
 		+ " LEFT JOIN `prekes`" + " ON `prekes`.`id` = `prekes_tiekejai`.`id_prekes`" 
 		+ " LEFT JOIN `selektoriai`" + " ON `prekes`.`id_grupes` = `selektoriai`.`id`" 
@@ -123,10 +123,10 @@ e.printStackTrace();
 <tr style="background-color: #DEB887">
 	<td><%= resultSet.getString ( "preke" ) %></td>
 	<td><%= resultSet.getString ( "reiksme" ) %></td>
-	<td><%= resultSet.getString ( "SUM( DISTINCT `prekes_gavimai`.`kiekis`)" ) %></td>
-	<td><%= resultSet.getString ( "SUM( DISTINCT `prekes_gavimai`.`kiekis` * `prekes_gavimai`.`vnt_kaina`)" ) %></td>
-	<td><%= resultSet.getString ( "SUM(`prekes_pardavimai`.`kiekis`)" ) %></td>
-	<td><%= resultSet.getString ( "SUM(`prekes_pardavimai`.`kiekis` * `prekes_pardavimai`.`vnt_kaina`)" ) %></td>
+	<td><%= resultSet.getString ( "kiekis_gauta" ) %></td>
+	<td><%= resultSet.getString ( "suma_gauta" ) %></td>
+	<td><%= resultSet.getString ( "kiekis_parduota" ) %></td>
+	<td><%= resultSet.getString ( "suma_parduota" ) %></td>
 <% 
 		}
 
